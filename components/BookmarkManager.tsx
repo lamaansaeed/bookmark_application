@@ -82,53 +82,73 @@ useEffect(() => {
 
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6">
-      <div className="mb-6">
+  <div>
+
+    {/* Add Bookmark Card */}
+    <div className="bg-white shadow-lg rounded-2xl p-6 mb-8">
+      <h2 className="text-lg font-semibold mb-4">Add New Bookmark</h2>
+
+      <div className="flex flex-col sm:flex-row gap-3">
         <input
           type="text"
           placeholder="Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 mr-2 rounded"
+          className="flex-1 border border-gray-200 rounded-xl px-4 py-2 
+                     focus:outline-none focus:ring-2 focus:ring-black transition"
         />
+
         <input
           type="text"
           placeholder="URL"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          className="border p-2 mr-2 rounded"
+          className="flex-1 border border-gray-200 rounded-xl px-4 py-2 
+                     focus:outline-none focus:ring-2 focus:ring-black transition"
         />
+
         <button
           onClick={addBookmark}
-          className="bg-black text-white px-4 py-2 rounded"
+          className="bg-black text-white px-6 py-2 rounded-xl 
+                     hover:scale-105 transition-transform"
         >
           Add
         </button>
       </div>
-
-      <ul>
-        {bookmarks.map((bookmark) => (
-          <li
-            key={bookmark.id}
-            className="flex justify-between items-center border-b py-2"
-          >
-            <a
-              href={bookmark.url}
-              target="_blank"
-              className="text-blue-600 underline"
-            >
-              {bookmark.title}
-            </a>
-
-            <button
-              onClick={() => deleteBookmark(bookmark.id)}
-              className="text-red-500"
-            >
-              Delete
-            </button>
-          </li>
-        ))}
-      </ul>
     </div>
-  )
+
+    {/* Bookmark List */}
+    <div className="space-y-4">
+      {bookmarks.length === 0 && (
+        <div className="text-center text-gray-400 py-10">
+          No bookmarks yet. Add your first one ✨
+        </div>
+      )}
+
+      {bookmarks.map((bookmark) => (
+        <div
+          key={bookmark.id}
+          className="bg-white shadow-md rounded-2xl p-5 
+                     flex items-center justify-between 
+                     hover:shadow-lg transition"
+        >
+          <a
+            href={bookmark.url}
+            target="_blank"
+            className="text-gray-800 font-medium hover:underline"
+          >
+            {bookmark.title}
+          </a>
+
+          <button
+            onClick={() => deleteBookmark(bookmark.id)}
+            className="text-sm text-red-500 hover:text-red-600 transition"
+          >
+            Delete
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+)
 }

@@ -10,11 +10,12 @@ export default function LoginButton() {
   }
 
   return (
-    <button
-      onClick={handleLogin}
-      className="px-4 py-2 bg-black text-white rounded-lg"
-    >
-      Sign in with Google
-    </button>
+   <button
+  onClick={handleLogin}
+  className="w-full bg-black text-white py-3 rounded-xl font-medium 
+             hover:scale-[1.02] transition-transform duration-200"
+>
+  Sign in with Google
+</button>
   )
 }
